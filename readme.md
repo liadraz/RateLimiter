@@ -1,11 +1,10 @@
 
-# Rate Limiter Implementation Assignment
-    Create a RateLimiter in C#
+# Rate Limiter Assignment
 
-# Motivation 
-    Rate limiters are mechanisem that limit the number of requests that can be made to a specific endpoint.
+## Motivation 
+Rate limiters are mechanisem that limit the number of requests that can be made to a specific endpoint.
 
-# Requirements
+## Requirements
 
 - Initialize with a Function (Func<TArg, Task>) and several rate limits. (Pool of rate limits?)
 - Provide an action method **Perform**, `Task Perform(TArg argument)`
@@ -16,40 +15,40 @@
         10 per second, 100 per minute, 1000 per daytime
 - Support multiple rate limits simultaneously. 
 
-# Implementation Approaches
+> *NOTE Do not use external Libraries*
 
-## Sliding Window
-    Ensure that you are limited to 10 requests in any rolling 24-hour window
-### *Pros*
+## Implementation Approaches
+
+### Sliding Window
+Ensure that you are limited to 10 requests in any rolling 24-hour window.
+
+*Pros*
 - Prevents bursts near the reset times
 - Less restricts clients to specific time (a human user / bot)
 - Requests are more scattered during the day and flexiable to the 
 user.
 
-### *Cons*
+*Cons*
 - Complex implementation
 - Uses more memory to track all timestamps.
 - Handles timestamps for each execution.
 
-### Absolute
-    Ensure 10 requests are made on a calendar day starting at midnight (00:00)
+#### Absolute
+Ensure 10 requests are made on a calendar day starting at midnight (00:00).
 
-### *Pros*
+*Pros*
 - Predictable
 - Easy to implement
-### *Cons*
+*Cons*
 - Can exceed the limit in a very short time or near reset times.
 
-**Do not use external Libraries**
+## How To Test It
 
-# How To Test It
-
-# Usage
-
+## Usage
 
 ---
 
-# AsIs
+## *AsIs*
 `Create a RateLimiter in C#.
 It's purpose is to be initialized with some Func> and multiple(!) rate limits.
 
